@@ -14,9 +14,9 @@ class ReviewAverage(
 
     var bookId: Long,
 
-    var totalScore: Int,
+    var totalScore: Int, // 리뷰 총 합
 
-    var count: Int,
+    var count: Int, // 리뷰 갯수
 ) {
 }
 
