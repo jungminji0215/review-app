@@ -45,6 +45,12 @@
 
 ## 설계
 
+- ERD
+
+<img width="450" alt="스크린샷 2022-12-29 오후 1 01 29" src="https://user-images.githubusercontent.com/83000829/209903914-a21b805a-6a3f-4036-8149-82f4bb2ae4ab.png">
+
+-> ERD 업데이트 중
+
 - 엔티티
 
 
