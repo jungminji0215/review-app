@@ -1,7 +1,7 @@
 package com.example.reviewapp.domain.review
 
+import com.example.reviewapp.dto.review.request.ReviewInput
 import org.springframework.data.jpa.repository.JpaRepository
-import java.time.ZonedDateTime
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -26,6 +26,23 @@ class Review(
     fun isDeleted(){
         this.isDeleted = true
     }
+
+    fun result(): ReviewResult{
+        return ReviewResult(
+            id = this.id!!,
+            userId = this.userId,
+            bookId = this.bookId,
+            contents = this.contents,
+            isDeleted = this.isDeleted
+        )
+    }
 }
+
+fun review(input: ReviewInput, bookId: Long) =
+    Review(
+        bookId = bookId,
+        userId = input.userId,
+        contents = input.contents,
+    )
 
 interface ReviewRepository : JpaRepository<Review, Long>
