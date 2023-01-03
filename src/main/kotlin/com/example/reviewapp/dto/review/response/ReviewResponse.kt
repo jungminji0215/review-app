@@ -1,6 +1,6 @@
 package com.example.reviewapp.dto.review.response
 
-data class ReviewResult(
+data class ReviewResponse(
     val id: Long,
     val userId: Long,
     val bookId: Long,
