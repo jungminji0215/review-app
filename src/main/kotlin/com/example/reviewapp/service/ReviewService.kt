@@ -6,9 +6,12 @@ import com.example.reviewapp.dto.review.request.ReviewInput
 import com.example.reviewapp.dto.review.response.ReviewResponse
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import kotlin.IllegalArgumentException
 
 interface ReviewService {
     fun create(bookId: Long, input: ReviewInput): ReviewResponse
+
+    fun delete(bookId: Long, reviewId: Long) : ReviewResponse
 }
 
 @Service
@@ -23,10 +26,15 @@ class ReviewServiceImpl(
 
         // todo 별점 저장
 
-        // todo 포인트 주는 로직 추가
         givePoint(input.userId)
 
         return reviewRepository.save(reviewEntity).result()
+    }
+    @Transactional
+    override fun delete(bookId: Long, reviewId: Long): ReviewResponse {
+        val review = reviewRepository.findById(reviewId).orElseThrow{throw IllegalArgumentException("리뷰가 존재하지 않습니다.")}
+        review.delete()
+        return review.result()
     }
 
     fun givePoint(userId: Long){
@@ -34,7 +42,6 @@ class ReviewServiceImpl(
         // 포인트 테이블에 유저가 있다고 가정
         val userPoint = pointPointRepository.findByUserId(userId).orElseThrow()
 
-        // 이렇게만 해주었는데 DB에 반영이 되는 이유는..?
         userPoint.givePoint()
     }
 }

@@ -19,4 +19,9 @@ class ReviewController(
     @PostMapping
     fun create(@PathVariable bookId: Long, @RequestBody input: ReviewInput)
     = ResponseEntity.ok().body(ResponseResult(reviewService.create(bookId, input)))
+
+    @DeleteMapping("/{reviewId}")
+    fun delete(@PathVariable bookId: Long, @PathVariable reviewId: Long)
+    = ResponseEntity.ok().body(ResponseResult(reviewService.delete(bookId, reviewId)))
+
 }
