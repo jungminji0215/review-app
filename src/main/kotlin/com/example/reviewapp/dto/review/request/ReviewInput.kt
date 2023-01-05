@@ -13,7 +13,7 @@ data class ReviewInput(
             bookId = bookId,
             star = this.star,
             contents = this.contents,
-            isDeleted = false
+            active = true
         )
     }
 }

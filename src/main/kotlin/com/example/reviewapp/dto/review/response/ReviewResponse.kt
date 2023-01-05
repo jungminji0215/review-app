@@ -5,5 +5,5 @@ data class ReviewResponse(
     val userId: Long,
     val bookId: Long,
     val contents: String,
-    val isDeleted: Boolean
+    val active: Boolean
 )

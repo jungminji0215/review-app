@@ -22,12 +22,12 @@ class Review(
 
     var contents: String,
 
-    var isDeleted:Boolean = false,
+    var active:Boolean = false,
 
     // todo 작성일, 수정일
 ) {
-    fun isDeleted(){
-        this.isDeleted = true
+    fun delete(){
+        this.active = false
     }
 
     fun result(): ReviewResponse {
@@ -36,7 +36,7 @@ class Review(
             userId = this.userId,
             bookId = this.bookId,
             contents = this.contents,
-            isDeleted = this.isDeleted
+            active = this.active
         )
     }
 }
