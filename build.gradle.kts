@@ -6,6 +6,8 @@ plugins {
 
     id("org.jetbrains.kotlin.plugin.jpa") version "1.6.21"
 
+
+
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
 }
@@ -28,6 +30,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.flywaydb:flyway-core:7.15.0")
+
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.1")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
