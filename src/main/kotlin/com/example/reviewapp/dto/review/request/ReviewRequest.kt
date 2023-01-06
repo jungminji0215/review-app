@@ -2,7 +2,7 @@ package com.example.reviewapp.dto.review.request
 
 import com.example.reviewapp.domain.review.Review
 
-data class ReviewInput(
+data class ReviewRequest(
     val userId: Long,
     val star: Int,
     val contents: String,
