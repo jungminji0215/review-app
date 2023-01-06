@@ -2,7 +2,7 @@ package com.example.reviewapp.dto.review.request
 
 import com.example.reviewapp.domain.review.Review
 
-data class ReviewInput(
+data class ReviewRequest(
     val userId: Long,
     val star: Int,
     val contents: String,
@@ -13,7 +13,7 @@ data class ReviewInput(
             bookId = bookId,
             star = this.star,
             contents = this.contents,
-            isDeleted = false
+            active = true
         )
     }
 }
