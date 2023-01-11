@@ -41,6 +41,7 @@ class Review(
             id = this.id!!,
             userId = this.userId,
             bookId = this.bookId,
+            star = this.star,
             contents = this.contents,
             active = this.active
         )
