@@ -33,6 +33,8 @@ dependencies {
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.1")
 
+    testImplementation("io.mockk:mockk:1.12.3")
+    testImplementation("org.amshove.kluent:kluent:1.68")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
