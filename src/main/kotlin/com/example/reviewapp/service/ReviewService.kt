@@ -26,7 +26,7 @@ class ReviewServiceImpl(
 
         // todo 별점 저장
 
-        givePoint(input.userId)
+//        givePoint(input.userId)
 
         return reviewRepository.save(reviewEntity).response()
     }
