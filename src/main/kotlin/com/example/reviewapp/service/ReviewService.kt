@@ -12,6 +12,8 @@ interface ReviewService {
     fun create(bookId: Long, input: ReviewRequest): ReviewResponse
 
     fun delete(bookId: Long, reviewId: Long) : ReviewResponse
+
+    fun get(reviewId: Long) : ReviewResponse
 }
 
 @Service
@@ -19,6 +21,9 @@ class ReviewServiceImpl(
     private val reviewRepository: ReviewRepository,
     private val pointPointRepository: ReviewPointRepository
 ) : ReviewService {
+    override fun get(reviewId: Long): ReviewResponse {
+        return reviewRepository.findById(reviewId).get().response()
+    }
 
     @Transactional
     override fun create(bookId: Long, input: ReviewRequest): ReviewResponse {
