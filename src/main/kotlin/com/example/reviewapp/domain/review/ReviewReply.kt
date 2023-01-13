@@ -6,9 +6,7 @@ import javax.persistence.*
 
 @Entity
 class ReviewReply(
-    // review 에 리뷰 저장하면
-    // jpa 가 알아서 리뷰에서 pk 값 꺼내서 insert 할 때 fk 값으로 사용한다.
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "review_id")
     var review: Review,
 

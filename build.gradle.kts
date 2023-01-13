@@ -32,6 +32,7 @@ dependencies {
     implementation("org.flywaydb:flyway-core:7.15.0")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.1")
+    implementation("com.querydsl:querydsl-jpa")
 
     testImplementation("io.mockk:mockk:1.12.3")
     testImplementation("org.amshove.kluent:kluent:1.68")

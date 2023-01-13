@@ -24,4 +24,7 @@ class ReviewController(
     fun delete(@PathVariable bookId: Long, @PathVariable reviewId: Long)
     = ResponseEntity.ok().body(ResponseResult(reviewService.delete(bookId, reviewId)))
 
+    @GetMapping("/{reviewId}")
+    fun get(@PathVariable reviewId: Long)
+            = ResponseEntity.ok().body(ResponseResult(reviewService.get(reviewId)))
 }
