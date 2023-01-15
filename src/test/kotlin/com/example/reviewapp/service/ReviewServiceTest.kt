@@ -1,5 +1,6 @@
 package com.example.reviewapp.service
 
+import com.example.reviewapp.domain.review.ReviewAverageRepository
 import com.example.reviewapp.domain.review.ReviewRepository
 import com.example.reviewapp.dto.review.request.ReviewRequest
 import org.amshove.kluent.shouldBeEqualTo
@@ -13,11 +14,13 @@ import org.springframework.boot.test.context.SpringBootTest
 class ReviewServiceTest(
     @Autowired private val reviewService: ReviewService,
     @Autowired private val reviewRepository: ReviewRepository,
+    @Autowired private val reviewAverageRepository: ReviewAverageRepository,
 ) {
 
     @AfterEach
     fun clean() {
         reviewRepository.deleteAll()
+        reviewAverageRepository.deleteAll()
     }
 
     @Test
