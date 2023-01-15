@@ -1,12 +1,12 @@
 package com.example.reviewapp.service
 
-import com.example.reviewapp.domain.point.ReviewPointRepository
+import com.example.reviewapp.domain.review.ReviewAverage
+import com.example.reviewapp.domain.review.ReviewAverageRepository
 import com.example.reviewapp.domain.review.ReviewRepository
 import com.example.reviewapp.dto.review.request.ReviewRequest
 import com.example.reviewapp.dto.review.response.ReviewResponse
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import kotlin.IllegalArgumentException
 
 interface ReviewService {
     fun create(bookId: Long, input: ReviewRequest): ReviewResponse
@@ -19,7 +19,7 @@ interface ReviewService {
 @Service
 class ReviewServiceImpl(
     private val reviewRepository: ReviewRepository,
-    private val pointPointRepository: ReviewPointRepository
+    private val reviewAverageRepository: ReviewAverageRepository
 ) : ReviewService {
     override fun get(reviewId: Long): ReviewResponse {
         return reviewRepository.findById(reviewId).get().response()
@@ -29,24 +29,32 @@ class ReviewServiceImpl(
     override fun create(bookId: Long, input: ReviewRequest): ReviewResponse {
         val reviewEntity = input.toEntity(bookId)
 
-        // todo 별점 저장
-
-//        givePoint(input.userId)
+        // todo 리펙토링
+        val reviewAverage = reviewAverageRepository.findByBookId(bookId) ?: ReviewAverage(
+            bookId = bookId,
+            count = 0,
+            totalScore = 0
+        )
+        reviewAverage.saveScore(bookId, input)
+        reviewAverageRepository.save(reviewAverage)
 
         return reviewRepository.save(reviewEntity).response()
     }
+
+//    private fun saveScore(bookId: Long, input: ReviewRequest) {
+//        val rviewAverage = reviewAverageRepository.findByBookId(bookId) ?: ReviewAverage(
+//            bookId = bookId,
+//            count = 0,
+//            totalScore = 0
+//        )
+//        rviewAverage.saveScore(bookId, input)
+//        reviewAverageRepository.save(rviewAverage)
+//    }
+
     @Transactional
     override fun delete(bookId: Long, reviewId: Long): ReviewResponse {
         val review = reviewRepository.findById(reviewId).orElseThrow{throw IllegalArgumentException("리뷰가 존재하지 않습니다.")}
         review.delete()
         return review.response()
-    }
-
-    fun givePoint(userId: Long){
-        // todo 디비에 데이터 없을 경우 처리
-        // 포인트 테이블에 유저가 있다고 가정
-        val userPoint = pointPointRepository.findByUserId(userId).orElseThrow()
-
-        userPoint.givePoint()
     }
 }
