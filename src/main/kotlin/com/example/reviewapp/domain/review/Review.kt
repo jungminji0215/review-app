@@ -3,15 +3,10 @@ package com.example.reviewapp.domain.review
 import com.example.reviewapp.dto.review.request.ReviewRequest
 import com.example.reviewapp.dto.review.response.ReviewResponse
 import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.Query
 import javax.persistence.*
 
 @Entity
 class Review(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-
     val userId: Long,
 
     val bookId: Long,
@@ -19,6 +14,10 @@ class Review(
     var star: Int,
 
     var contents: String,
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
 
     @OneToMany(mappedBy = "review", fetch = FetchType.LAZY)
     val reviewReply: MutableList<ReviewReply> = mutableListOf(),
@@ -61,4 +60,5 @@ fun review(input: ReviewRequest, bookId: Long) =
     )
 
 interface ReviewRepository : JpaRepository<Review, Long>{
+    fun findAllByBookId(bookId: Long): List<Review>
 }
