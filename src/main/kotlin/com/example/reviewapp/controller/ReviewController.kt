@@ -16,6 +16,10 @@ class ReviewController(
         return "테스트 요청"
     }
 
+    @GetMapping
+    fun get(@PathVariable bookId: Long)
+            = ResponseEntity.ok().body(ResponseResult(reviewService.get(bookId)))
+
     @PostMapping
     fun create(@PathVariable bookId: Long, @RequestBody input: ReviewRequest)
     = ResponseEntity.ok().body(ResponseResult(reviewService.create(bookId, input)))
@@ -23,8 +27,4 @@ class ReviewController(
     @DeleteMapping("/{reviewId}")
     fun delete(@PathVariable bookId: Long, @PathVariable reviewId: Long)
     = ResponseEntity.ok().body(ResponseResult(reviewService.delete(bookId, reviewId)))
-
-    @GetMapping("/{reviewId}")
-    fun get(@PathVariable reviewId: Long)
-            = ResponseEntity.ok().body(ResponseResult(reviewService.get(reviewId)))
 }

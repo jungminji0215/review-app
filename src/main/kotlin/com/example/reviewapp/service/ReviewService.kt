@@ -13,7 +13,7 @@ interface ReviewService {
 
     fun delete(bookId: Long, reviewId: Long) : ReviewResponse
 
-    fun get(reviewId: Long) : ReviewResponse
+    fun get(bookId: Long) : List<ReviewResponse>
 }
 
 @Service
@@ -21,8 +21,8 @@ class ReviewServiceImpl(
     private val reviewRepository: ReviewRepository,
     private val reviewAverageRepository: ReviewAverageRepository
 ) : ReviewService {
-    override fun get(reviewId: Long): ReviewResponse {
-        return reviewRepository.findById(reviewId).get().response()
+    override fun get(bookId: Long): List<ReviewResponse> {
+        return reviewRepository.findAllByBookId(bookId).map { it.response() }
     }
 
     @Transactional
