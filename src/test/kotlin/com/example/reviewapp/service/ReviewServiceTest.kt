@@ -1,5 +1,6 @@
 package com.example.reviewapp.service
 
+import com.example.reviewapp.domain.review.Review
 import com.example.reviewapp.domain.review.ReviewAverageRepository
 import com.example.reviewapp.domain.review.ReviewRepository
 import com.example.reviewapp.dto.review.request.ReviewRequest
@@ -20,7 +21,6 @@ class ReviewServiceTest(
     @AfterEach
     fun clean() {
         reviewRepository.deleteAll()
-        reviewAverageRepository.deleteAll()
     }
 
     @Test
@@ -41,5 +41,22 @@ class ReviewServiceTest(
         result.userId shouldBeEqualTo 1L
         result.star shouldBeEqualTo 5
         result.contents shouldBeEqualTo "교훈을 주는 책이예요."
+    }
+
+    @Test
+    fun `리뷰가 정상적으로 조회된다`() {
+        // given
+        val bookId = 1L
+
+        reviewRepository.saveAll(listOf(
+            Review(1,1,5,"리뷰 내용"),
+            Review(2,1,5,"리뷰 내용"),
+        ))
+
+        // when
+        val result = reviewService.get(bookId)
+
+        // then
+        result.size shouldBeEqualTo 2
     }
 }
