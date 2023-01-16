@@ -49,11 +49,17 @@
 
 ## 설계
 
-- ERD
+<img width="486" alt="스크린샷 2023-01-16 오후 1 14 06" src="https://user-images.githubusercontent.com/83000829/212597343-c7352d9a-cabe-4f35-b58f-ef44466bc956.png">
+
+[ERD]
+
+- 수정전
 
 <img width="450" alt="스크린샷 2022-12-29 오후 1 01 29" src="https://user-images.githubusercontent.com/83000829/209903914-a21b805a-6a3f-4036-8149-82f4bb2ae4ab.png">
 
--> ERD 업데이트 중
+- 수정후
+
+<img width="574" alt="스크린샷 2023-01-16 오후 1 12 50" src="https://user-images.githubusercontent.com/83000829/212597227-fec8f903-8371-41c5-a144-2c9b6f5f285e.png">
 
 - 엔티티
 
