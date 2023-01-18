@@ -20,7 +20,12 @@
 주제 : 도서 리뷰 API 
 
 API 개발 공부 목적으로 진행하고있는 프로젝트입니다. 리뷰 등록 API, 관리자 리뷰 API 개발하고있습니다. <br>
-테스트코드도 작성하고있습니다.
+테스트코드도 작성하고있습니다. <br>
+
+리뷰 등록 : POST review/{bookId}
+리뷰 조회 : GET review/{bookId}
+리뷰 삭제 : DELETE review/{bookId}/{reviewId}
+리뷰 수정 : PUT review/{bookId}/{reviewId}
 
 <br>
 
